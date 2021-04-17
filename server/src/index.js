@@ -1,0 +1,10 @@
+"use strict";
+exports.__esModule = true;
+var express = require("express");
+var app = express();
+var port = 9000;
+var one = 1;
+var two = 2;
+app.get("/", function (req, res) { return res.send("1 + 2 = " + (one + two)); });
+app.listen(port);
+console.log("[app]: http://localhost:" + port);
