@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 import express = require('express');
 import { Application } from "express";
 import { ApolloServer } from 'apollo-server-express';
