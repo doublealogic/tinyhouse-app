@@ -1,4 +1,5 @@
 import { 
+    GraphQLFloat,
     GraphQLID,
     GraphQLInt,
     GraphQLList,
@@ -21,7 +22,7 @@ const Listing = new GraphQLObjectType({
         numOfGuests: { type: GraphQLNonNull(GraphQLInt) },
         numOfBeds: { type: GraphQLNonNull(GraphQLInt) },
         numOfBaths: { type: GraphQLNonNull(GraphQLInt) },
-        rating: { type: GraphQLNonNull(GraphQLInt) }
+        rating: { type: GraphQLNonNull(GraphQLFloat) }
     }
 });
 
