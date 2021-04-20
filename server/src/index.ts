@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import express = require('express');
 import { Application } from "express";
 import { ApolloServer } from 'apollo-server-express';
@@ -21,8 +23,6 @@ const mount = async (app: Application) => {
 
     console.log(`[app]: http://localhost:${port}`);
 
-    const listings = await db.listings.find({}).toArray();
-    console.log(listings);
 };
 
 mount(express());
