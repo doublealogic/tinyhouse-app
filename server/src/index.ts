@@ -1,6 +1,6 @@
 import express = require('express');
 import {ApolloServer} from 'apollo-server-express';
-import { typeDefs, resolvers} from './graphql';
+import { typeDefs, resolvers } from './graphql';
 
 const app = express();
 const port = 9000;
