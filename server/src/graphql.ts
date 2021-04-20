@@ -14,7 +14,7 @@ import { listings } from "./listings";
 const Listing = new GraphQLObjectType({
     name: "Listing",
     fields: {
-        id { type: GraphQLNonNull(GraphQLID) },
+        id: { type: GraphQLNonNull(GraphQLID) },
         title: { type: GraphQLNonNull(GraphQLString) },
         image: { type: GraphQLNonNull(GraphQLString) },
         address: { type: GraphQLNonNull(GraphQLString) },
