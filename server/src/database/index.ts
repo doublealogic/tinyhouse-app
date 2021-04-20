@@ -1,9 +1,19 @@
-import { mongoClient } from "mongodb";
+import { MongoClient } from "mongodb";
 
-const user = '';
-const userPassword = '';
-const cluster = '';
 const url = 
-    "mongodb+srv://user_001:<password>@cluster0.sp51p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    `mongodb+srv://${process.env.DB_USER}:${
+        process.env.DB_USER_PASSWORD
+    }@${process.env.DB_CLUSTER}.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
-export const connectDatabase = () => {};
+export const connectDatabase = async () => {
+    const client = await MongoClient.connect(url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+
+    const db = client.db("main");
+
+    return { 
+        listings: db.collection("test_listings")
+    };
+};
