@@ -22,8 +22,8 @@ interface Props {
 
 export const Listings = ({ title }: Props) => {
     const fetchListings = async () => {
-        const listings = await server.fetch({ query: LISTINGS});
-        console.log(listings)
+        const data = await server.fetch({ query: LISTINGS });
+        console.log(data);
     };
 
     return (
