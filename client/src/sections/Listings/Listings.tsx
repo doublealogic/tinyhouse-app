@@ -50,6 +50,7 @@ export const Listings = ({ title }: Props) => {
                 id: ''
             }
         });
+        console.log(data);
     };
 
     return (
