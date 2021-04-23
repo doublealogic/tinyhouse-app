@@ -34,7 +34,7 @@ interface Props {
 }
 
 export const Listings = ({ title }: Props) => {
-    const { data, loading, refetch } = useQuery<ListingsData>(LISTINGS);
+    const { data, loading, error, refetch } = useQuery<ListingsData>(LISTINGS);
 
     const deleteListing = async (id: string) => {
         await server.fetch<
@@ -71,6 +71,14 @@ export const Listings = ({ title }: Props) => {
 
     if (loading) {
         return <h2>Loading...</h2>;
+    }
+
+    if (error) {
+        return (
+            <h2>
+                Uh oh! Something went wrong. Please try again later!
+            </h2>
+        );
     }
 
     return (
