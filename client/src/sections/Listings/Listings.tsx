@@ -57,9 +57,18 @@ export const Listings = ({ title }: Props) => {
         console.log(data);
     };
 
+    const listingsList = listings ? (
+        <ul>
+            {listings.map(listing => {
+                return <li key={listing.id}>{listing.title}</li>;
+            })}
+        </ul>
+    ) : null;
+
     return (
     <div>
         <h2>{title}</h2>
+        {listingsList}
         <button onClick={fetchListings}>
             Query Listings!
         </button>
