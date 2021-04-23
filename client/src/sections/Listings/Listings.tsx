@@ -39,13 +39,14 @@ export const Listings = ({ title }: Props) => {
     >(null);
 
     const fetchListings = async () => {
-        const data = await server.fetch<ListingsData>({ query: 
-            LISTINGS });
+        const data = await server.fetch<ListingsData>({ 
+            query: LISTINGS 
+        });
         setListings(data.listings);
     };
 
-    const deleteListing = async () => {
-        const { data } = await server.fetch<
+    const deleteListing = async (id: string) => {
+        await server.fetch<
         DeleteListingData,
         DeleteListingVariables
         >({ 
@@ -54,6 +55,7 @@ export const Listings = ({ title }: Props) => {
                 id
             }
         });
+        fetchListings();
     };
 
     const listingsList = listings ? (
