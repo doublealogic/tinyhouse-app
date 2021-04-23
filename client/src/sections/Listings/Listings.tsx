@@ -51,16 +51,24 @@ export const Listings = ({ title }: Props) => {
         >({ 
             query: DELETE_LISTING,
             variables: {
-                id: "607ebcc765945d71740a54ea"
+                id
             }
         });
-        console.log(data);
     };
 
     const listingsList = listings ? (
         <ul>
             {listings.map(listing => {
-                return <li key={listing.id}>{listing.title}</li>;
+                return (
+                    <li key={listing.id}>
+                        {listing.title}
+                        <button 
+                            onClick={() => deleteListing(listing.id)}
+                        >
+                            Delete
+                        </button>
+                    </li>
+                );
             })}
         </ul>
     ) : null;
