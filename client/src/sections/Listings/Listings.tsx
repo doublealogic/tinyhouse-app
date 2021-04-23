@@ -1,7 +1,6 @@
 import React from "react";
 import { server, useQuery } from "../../lib/api";
 import { 
-    Listing,
     ListingsData, 
     DeleteListingData, 
     DeleteListingVariables 
@@ -35,7 +34,7 @@ interface Props {
 }
 
 export const Listings = ({ title }: Props) => {
-    const { data } = useQuery<ListingsData>(LISTINGS);
+    const { data, refetch } = useQuery<ListingsData>(LISTINGS);
 
     const deleteListing = async (id: string) => {
         await server.fetch<
@@ -47,6 +46,8 @@ export const Listings = ({ title }: Props) => {
                 id
             }
         });
+
+        refetch();
     };
 
     const listings = data ? data.listings : null;
@@ -72,9 +73,6 @@ export const Listings = ({ title }: Props) => {
     <div>
         <h2>{title}</h2>
         {listingsList}
-        <button onClick={deleteListing}>
-            Delete a listing!
-        </button>
     </div>
     );
 };
