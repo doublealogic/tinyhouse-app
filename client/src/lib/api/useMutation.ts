@@ -7,6 +7,8 @@ interface State<TData> {
     error: boolean;
 }
 
+type MutationTuple<TData, TVariables> = [(variables? )]
+
 export const useMutation = <TData = any, TVariables = any>(
     query: string
 ) => {

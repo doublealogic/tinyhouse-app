@@ -1,5 +1,5 @@
 import React from "react";
-import { server, useQuery } from "../../lib/api";
+import { server, useQuery, useMutation } from "../../lib/api";
 import { 
     ListingsData, 
     DeleteListingData, 
@@ -36,7 +36,15 @@ interface Props {
 export const Listings = ({ title }: Props) => {
     const { data, loading, error, refetch } = useQuery<ListingsData>(LISTINGS);
 
-    const deleteListing = async (id: string) => {
+    const [deleteListing, { 
+        loading: deleteListingLoading, 
+        error: deleteListingError 
+        }
+    ] =
+    useMutation<DeleteListingData, DeleteListingVariables>
+    (DELETE_LISTING)
+
+    const handleDeleteListing = async (id: string) => {
         await server.fetch<
         DeleteListingData,
         DeleteListingVariables
@@ -59,7 +67,7 @@ export const Listings = ({ title }: Props) => {
                     <li key={listing.id}>
                         {listing.title}
                         <button 
-                            onClick={() => deleteListing(listing.id)}
+                            onClick={() => handleDeleteListing(listing.id)}
                         >
                             Delete
                         </button>
