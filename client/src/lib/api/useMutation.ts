@@ -7,7 +7,14 @@ interface State<TData> {
     error: boolean;
 }
 
-type MutationTuple<TData, TVariables> = [(variables? )]
+interface QueryResult<TData> extends State<TData> {
+    refetch: () => void;
+}
+
+type MutationTuple<TData, TVariables> = [
+    (variables?: TVariables | undefined) => Promise<void>, 
+    State<TData>
+];
 
 export const useMutation = <TData = any, TVariables = any>(
     query: string
