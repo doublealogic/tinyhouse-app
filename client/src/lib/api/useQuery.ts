@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useReducer, useEffect, useCallback } from "react";
 import { server } from './server';
 
 interface State<TData> {
@@ -9,6 +9,23 @@ interface State<TData> {
 
 interface QueryResult<TData> extends State<TData> {
     refetch: () => void;
+}
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'FETCH':
+            return { ...state, loading: true };
+        case 'FETCH_SUCCESS':
+            return {
+                data: action.payload,
+                loading: false,
+                error: false
+            };
+        case 'FETCH_ERROR':
+            return { ...state, loading: false, error: true };
+        default:
+            throw new Error();
+    }
 }
 
 export const useQuery = <TData = any>(
