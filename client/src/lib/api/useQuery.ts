@@ -7,11 +7,19 @@ interface State<TData> {
     error: boolean
 }
 
+type Action<TData> = 
+    | { type: "FETCH" }
+    | { type: "FETCH_SUCCESS"; payload: TData }
+    | { type: "FETCH_ERROR" };
+
 interface QueryResult<TData> extends State<TData> {
     refetch: () => void;
 }
 
-const reducer = (state, action) => {
+const reducer = <TData>(
+    state: State<TData>, 
+    action: Action<TData>
+    ): State<TData> => {
     switch (action.type) {
         case 'FETCH':
             return { ...state, loading: true };
@@ -31,6 +39,11 @@ const reducer = (state, action) => {
 export const useQuery = <TData = any>(
     query: string
     ): QueryResult<TData> => {
+    const [state, dispatch] = useReducer(reducer, {
+        data: null, 
+        loading: false, 
+        error: false
+    })
     const [state, setState] = useState<State<TData>>({
         data: null,
         loading: false,
