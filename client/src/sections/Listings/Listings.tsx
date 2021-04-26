@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery, useMutation } from "../../lib/api";
+import { gql } from "@apollo/client";
 import { 
     DeleteListingData, 
     DeleteListingVariables,
