@@ -8,7 +8,10 @@ import { render } from 'react-dom';
 import { Listings } from "./sections";
 import reportWebVitals from './reportWebVitals';
 
-const client = new ApolloClient({ uri: '/api', cache: new InMemoryCache() });
+const client = new ApolloClient({ 
+  uri: "/api", 
+  cache: new InMemoryCache() 
+});
 
 render(
   <ApolloProvider client={client}>
