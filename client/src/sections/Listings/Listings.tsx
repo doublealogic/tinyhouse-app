@@ -89,7 +89,7 @@ export const Listings = ({ title }: Props) => {
     if (error) {
         return (
             <div className="listings">
-                <ListingsSkeleton title={title} error/>
+                <ListingsSkeleton title={title} error />
             </div>
         );
     }
