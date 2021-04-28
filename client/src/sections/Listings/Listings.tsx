@@ -6,6 +6,7 @@ import {
     DeleteListing as DeleteListingData, 
     DeleteListingVariables,
 } from "./__generated__/DeleteListing";
+import "./styles/Listings.css";
 
 const LISTINGS = gql`
     query Listings {
