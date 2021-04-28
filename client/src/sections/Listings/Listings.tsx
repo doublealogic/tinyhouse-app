@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import List from "antd/es/list"
+import { Alert, Avatar, Button, List, Spin } from "antd";
 import { Listings as ListingsData } from "./__generated__/Listings";
 import { 
     DeleteListing as DeleteListingData, 
@@ -51,20 +51,29 @@ export const Listings = ({ title }: Props) => {
     const listings = data ? data.listings : null;
 
     const listingsList = listings ? (
-        <ul>
-            {listings.map(listing => {
-                return (
-                    <li key={listing.id}>
-                        {listing.title}
-                        <button 
+        <List 
+            itemLayout="horizontal" 
+            dataSource={listings}
+            renderItem={listing => (
+                <List.Item
+                    actions={[
+                        <Button
+                            type="primary"
                             onClick={() => handleDeleteListing(listing.id)}
                         >
-                            Delete
-                        </button>
-                    </li>
-                );
-            })}
-        </ul>
+                        Delete
+                        </Button>
+                    ]}
+                >
+                    <List.Item.Meta
+                        title={listing.title}
+                        description={listing.address}
+                        avatar={<Avatar src={listing.image} shape="square" size={48} />}
+                    />
+
+                </List.Item>
+            )}
+        />
     ) : null;
 
     if (loading) {
